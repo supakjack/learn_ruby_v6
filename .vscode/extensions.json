@@ -1,0 +1,8 @@
+{
+    "recommendations": [
+        "rebornix.ruby",
+        "eamodio.gitlens",
+        "wingrunr21.vscode-ruby",
+        "ms-vscode-remote.remote-wsl"
+    ]
+}
