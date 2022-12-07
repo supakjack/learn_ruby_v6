@@ -1,0 +1,1139 @@
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (9.3ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (5.5ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20221207132347)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" text, "first_name" text, "last_name" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221207132347"]]
+  [1m[36mTRANSACTION (8.8ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateBooks (20221207132517)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.5ms)[0m  [1m[35mCREATE TABLE "books" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" text, "description" text, "pages" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221207132517"]]
+  [1m[36mTRANSACTION (10.7ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateUserBooks (20221207132640)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "user_books" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer NOT NULL, "book_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_77461b8584"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_d492f7c830"
+FOREIGN KEY ("book_id")
+  REFERENCES "books" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_user_books_on_user_id" ON "user_books" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_user_books_on_book_id" ON "user_books" ("book_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221207132640"]]
+  [1m[36mTRANSACTION (10.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2022-12-07 13:40:16.457341"], ["updated_at", "2022-12-07 13:40:16.457341"]]
+  [1m[36mTRANSACTION (6.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("title", "first_name", "last_name", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "Mr."], ["first_name", "Supak"], ["last_name", "Pukdam"], ["created_at", "2022-12-07 14:52:31.822421"], ["updated_at", "2022-12-07 14:52:31.822421"]]
+  [1m[36mTRANSACTION (11.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Create (0.6ms)[0m  [1m[32mINSERT INTO "users" ("title", "first_name", "last_name", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "Ms."], ["first_name", "Korya"], ["last_name", "Pukdam"], ["created_at", "2022-12-07 14:53:38.698888"], ["updated_at", "2022-12-07 14:53:38.698888"]]
+  [1m[36mTRANSACTION (11.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBook Create (0.7ms)[0m  [1m[32mINSERT INTO "books" ("name", "description", "pages", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "book1"], ["description", "description 1"], ["pages", 365], ["created_at", "2022-12-07 14:55:48.833069"], ["updated_at", "2022-12-07 14:55:48.833069"]]
+  [1m[36mTRANSACTION (10.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBook Create (0.4ms)[0m  [1m[32mINSERT INTO "books" ("name", "description", "pages", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "book2"], ["description", "description 2"], ["pages", 465], ["created_at", "2022-12-07 14:56:08.964354"], ["updated_at", "2022-12-07 14:56:08.964354"]]
+  [1m[36mTRANSACTION (11.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "books" INNER JOIN "user_books" ON "books"."id" = "user_books"."book_id" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUserBook Create (0.3ms)[0m  [1m[32mINSERT INTO "user_books" ("user_id", "book_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 1], ["book_id", 1], ["created_at", "2022-12-07 15:00:14.844586"], ["updated_at", "2022-12-07 15:00:14.844586"]]
+  [1m[36mTRANSACTION (6.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mUserBook Create (0.4ms)[0m  [1m[32mINSERT INTO "user_books" ("user_id", "book_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 2], ["book_id", 2], ["created_at", "2022-12-07 15:01:39.209181"], ["updated_at", "2022-12-07 15:01:39.209181"]]
+  [1m[36mTRANSACTION (10.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+  [1m[36mUserBook Load (0.2ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ? /* loading for inspect */ LIMIT ?[0m  [["user_id", 1], ["LIMIT", 11]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mUserBook Create (0.3ms)[0m  [1m[32mINSERT INTO "user_books" ("user_id", "book_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 1], ["book_id", 2], ["created_at", "2022-12-07 15:02:52.129704"], ["updated_at", "2022-12-07 15:02:52.129704"]]
+  [1m[36mTRANSACTION (11.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mUserBook Load (0.1ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ? /* loading for inspect */ LIMIT ?[0m  [["user_id", 1], ["LIMIT", 11]]
+  [1m[36mUserBook Load (0.1ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" INNER JOIN "user_books" ON "books"."id" = "user_books"."book_id" WHERE "user_books"."user_id" = ? /* loading for inspect */ LIMIT ?[0m  [["user_id", 1], ["LIMIT", 11]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "books" INNER JOIN "user_books" ON "books"."id" = "user_books"."book_id" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+Started GET "/users/2" for ::1 at 2022-12-07 22:12:34 +0700
+  [1m[35m (2.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2", "user"=>{}}
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUserBook Load (0.8ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 2]]
+  ↳ app/models/user.rb:7:in `map'
+  [1m[36mBook Load (0.5ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ?[0m  [["id", 2]]
+  ↳ app/models/user.rb:7:in `map'
+Completed 500 Internal Server Error in 142ms (ActiveRecord: 6.4ms | Allocations: 21186)
+
+
+  
+NoMethodError (undefined method `as_book_json' for #<UserBook id: 2, user_id: 2, book_id: 2, created_at: "2022-12-07 15:01:39.209181000 +0000", updated_at: "2022-12-07 15:01:39.209181000 +0000">
+Did you mean?  as_json):
+  
+app/models/user.rb:7:in `block in as_detail_json'
+app/models/user.rb:7:in `map'
+app/models/user.rb:7:in `as_detail_json'
+app/controllers/users_controller.rb:13:in `show'
+Started GET "/users/1" for ::1 at 2022-12-07 22:12:45 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1", "user"=>{}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUserBook Load (0.3ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:7:in `map'
+  [1m[36mBook Load (0.8ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" IN (?, ?)[0m  [["id", 1], ["id", 2]]
+  ↳ app/models/user.rb:7:in `map'
+Completed 500 Internal Server Error in 18ms (ActiveRecord: 1.2ms | Allocations: 3886)
+
+
+  
+NoMethodError (undefined method `as_book_json' for #<UserBook id: 1, user_id: 1, book_id: 1, created_at: "2022-12-07 15:00:14.844586000 +0000", updated_at: "2022-12-07 15:00:14.844586000 +0000">
+Did you mean?  as_json):
+  
+app/models/user.rb:7:in `block in as_detail_json'
+app/models/user.rb:7:in `map'
+app/models/user.rb:7:in `as_detail_json'
+app/controllers/users_controller.rb:13:in `show'
+Started GET "/users" for ::1 at 2022-12-07 22:12:57 +0700
+Processing by UsersController#index as HTML
+  Parameters: {"user"=>{}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:8:in `index'
+Completed 200 OK in 5ms (Views: 4.3ms | ActiveRecord: 0.4ms | Allocations: 1038)
+
+
+Started GET "/users" for ::1 at 2022-12-07 22:13:27 +0700
+Processing by UsersController#index as HTML
+  Parameters: {"user"=>{}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:8:in `index'
+Completed 200 OK in 3ms (Views: 2.5ms | ActiveRecord: 0.1ms | Allocations: 888)
+
+
+Started GET "/users/1" for ::1 at 2022-12-07 22:13:49 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1", "user"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUserBook Load (0.5ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:7:in `map'
+  [1m[36mBook Load (1.6ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" IN (?, ?)[0m  [["id", 1], ["id", 2]]
+  ↳ app/models/user.rb:7:in `map'
+Completed 500 Internal Server Error in 54ms (ActiveRecord: 2.3ms | Allocations: 3851)
+
+
+  
+NoMethodError (undefined method `as_book_json' for #<UserBook id: 1, user_id: 1, book_id: 1, created_at: "2022-12-07 15:00:14.844586000 +0000", updated_at: "2022-12-07 15:00:14.844586000 +0000">
+Did you mean?  as_json):
+  
+app/models/user.rb:7:in `block in as_detail_json'
+app/models/user.rb:7:in `map'
+app/models/user.rb:7:in `as_detail_json'
+app/controllers/users_controller.rb:13:in `show'
+Started GET "/users/2" for ::1 at 2022-12-07 22:15:56 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUserBook Load (0.2ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 2]]
+  ↳ app/models/user.rb:7:in `map'
+  [1m[36mBook Load (0.8ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ?[0m  [["id", 2]]
+  ↳ app/models/user.rb:7:in `map'
+Completed 500 Internal Server Error in 33ms (ActiveRecord: 1.7ms | Allocations: 3762)
+
+
+  
+NoMethodError (undefined method `as_book_json' for #<UserBook id: 2, user_id: 2, book_id: 2, created_at: "2022-12-07 15:01:39.209181000 +0000", updated_at: "2022-12-07 15:01:39.209181000 +0000">
+Did you mean?  as_json):
+  
+app/models/user.rb:7:in `block in as_detail_json'
+app/models/user.rb:7:in `map'
+app/models/user.rb:7:in `as_detail_json'
+app/controllers/users_controller.rb:13:in `show'
+Started GET "/users/2" for ::1 at 2022-12-07 22:17:11 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUserBook Load (0.2ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 2]]
+  ↳ app/models/user.rb:7:in `map'
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ?[0m  [["id", 2]]
+  ↳ app/models/user.rb:7:in `map'
+Completed 200 OK in 60ms (Views: 0.3ms | ActiveRecord: 3.4ms | Allocations: 14450)
+
+
+Started GET "/users/2" for ::1 at 2022-12-07 22:17:36 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUserBook Load (0.6ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 2]]
+  ↳ app/models/user.rb:7:in `map'
+Completed 500 Internal Server Error in 56ms (ActiveRecord: 3.5ms | Allocations: 11424)
+
+
+  
+NoMethodError (undefined method `as_book_json' for #<UserBook id: 2, user_id: 2, book_id: 2, created_at: "2022-12-07 15:01:39.209181000 +0000", updated_at: "2022-12-07 15:01:39.209181000 +0000">
+Did you mean?  as_json):
+  
+app/models/user.rb:7:in `block in as_detail_json'
+app/models/user.rb:7:in `map'
+app/models/user.rb:7:in `as_detail_json'
+app/controllers/users_controller.rb:13:in `show'
+Started GET "/users/2" for ::1 at 2022-12-07 22:17:59 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUserBook Load (0.2ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 2]]
+  ↳ app/models/user.rb:7:in `map'
+  [1m[36mBook Load (3.6ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/user.rb:7:in `block in as_detail_json'
+Completed 200 OK in 56ms (Views: 0.8ms | ActiveRecord: 8.0ms | Allocations: 14468)
+
+
+Started GET "/users/2" for ::1 at 2022-12-07 22:18:16 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUserBook Load (0.2ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 2]]
+  ↳ app/models/user.rb:7:in `map'
+Completed 200 OK in 26ms (Views: 1.7ms | ActiveRecord: 3.1ms | Allocations: 9595)
+
+
+Started GET "/users/2" for ::1 at 2022-12-07 22:18:39 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUserBook Load (0.5ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 2]]
+  ↳ app/models/user.rb:7:in `map'
+  [1m[36mBook Load (0.3ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/user.rb:7:in `block in as_detail_json'
+Completed 200 OK in 55ms (Views: 1.0ms | ActiveRecord: 4.4ms | Allocations: 14366)
+
+
+Started GET "/users/2" for ::1 at 2022-12-07 22:23:40 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUserBook Load (0.3ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 2]]
+  ↳ app/models/user.rb:7:in `map'
+  [1m[36mBook Load (1.1ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/user_book.rb:7:in `as_book_json'
+Completed 200 OK in 84ms (Views: 1.4ms | ActiveRecord: 6.5ms | Allocations: 14746)
+
+
+Started GET "/users/2" for ::1 at 2022-12-07 22:23:55 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUserBook Load (0.2ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 2]]
+  ↳ app/models/user.rb:7:in `map'
+  [1m[36mBook Load (0.3ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/user_book.rb:7:in `as_book_json'
+Completed 200 OK in 15ms (Views: 0.3ms | ActiveRecord: 1.4ms | Allocations: 1948)
+
+
+Started GET "/users/1" for ::1 at 2022-12-07 22:25:29 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUserBook Load (0.2ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:7:in `map'
+  [1m[36mBook Load (0.4ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user_book.rb:7:in `as_book_json'
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/user_book.rb:7:in `as_book_json'
+Completed 200 OK in 27ms (Views: 0.6ms | ActiveRecord: 2.4ms | Allocations: 2731)
+
+
+Started GET "/users/1" for ::1 at 2022-12-07 22:26:30 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUserBook Load (0.1ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:7:in `map'
+  [1m[36mBook Load (0.5ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" IN (?, ?)[0m  [["id", 1], ["id", 2]]
+  ↳ app/models/user.rb:7:in `map'
+Completed 200 OK in 54ms (Views: 1.0ms | ActiveRecord: 4.6ms | Allocations: 14615)
+
+
+Started GET "/users" for ::1 at 2022-12-07 22:27:29 +0700
+Processing by UsersController#index as HTML
+  Parameters: {"user"=>{}}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:8:in `index'
+Completed 200 OK in 8ms (Views: 6.7ms | ActiveRecord: 0.6ms | Allocations: 926)
+
+
+Started GET "/users/2" for ::1 at 2022-12-07 22:27:41 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2", "user"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUserBook Load (0.2ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 2]]
+  ↳ app/models/user.rb:7:in `map'
+  [1m[36mBook Load (0.6ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ?[0m  [["id", 2]]
+  ↳ app/models/user.rb:7:in `map'
+Completed 200 OK in 20ms (Views: 0.7ms | ActiveRecord: 1.0ms | Allocations: 2148)
+
+
+Started GET "/users/1" for ::1 at 2022-12-07 22:27:50 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1", "user"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUserBook Load (0.4ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:7:in `map'
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" IN (?, ?)[0m  [["id", 1], ["id", 2]]
+  ↳ app/models/user.rb:7:in `map'
+Completed 200 OK in 16ms (Views: 0.5ms | ActiveRecord: 0.9ms | Allocations: 2405)
+
+
+Started GET "/users/1" for ::1 at 2022-12-07 22:27:51 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1", "user"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUserBook Load (0.2ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:7:in `map'
+  [1m[36mBook Load (0.4ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" IN (?, ?)[0m  [["id", 1], ["id", 2]]
+  ↳ app/models/user.rb:7:in `map'
+Completed 200 OK in 12ms (Views: 0.4ms | ActiveRecord: 0.8ms | Allocations: 2405)
+
+
+Started GET "/users/1" for ::1 at 2022-12-07 22:27:52 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1", "user"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUserBook Load (0.2ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:7:in `map'
+  [1m[36mBook Load (1.1ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" IN (?, ?)[0m  [["id", 1], ["id", 2]]
+  ↳ app/models/user.rb:7:in `map'
+Completed 200 OK in 12ms (Views: 0.3ms | ActiveRecord: 1.6ms | Allocations: 2405)
+
+
+Started GET "/users/1" for ::1 at 2022-12-07 22:27:53 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1", "user"=>{}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUserBook Load (0.2ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:7:in `map'
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" IN (?, ?)[0m  [["id", 1], ["id", 2]]
+  ↳ app/models/user.rb:7:in `map'
+Completed 200 OK in 9ms (Views: 0.4ms | ActiveRecord: 0.6ms | Allocations: 2405)
+
+
+Started GET "/users/1" for ::1 at 2022-12-07 22:27:53 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1", "user"=>{}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUserBook Load (0.2ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:7:in `map'
+  [1m[36mBook Load (1.6ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" IN (?, ?)[0m  [["id", 1], ["id", 2]]
+  ↳ app/models/user.rb:7:in `map'
+Completed 200 OK in 10ms (Views: 0.3ms | ActiveRecord: 1.9ms | Allocations: 2405)
+
+
+Started GET "/users/1" for ::1 at 2022-12-07 22:27:54 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1", "user"=>{}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUserBook Load (0.3ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:7:in `map'
+  [1m[36mBook Load (0.6ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" IN (?, ?)[0m  [["id", 1], ["id", 2]]
+  ↳ app/models/user.rb:7:in `map'
+Completed 200 OK in 14ms (Views: 0.5ms | ActiveRecord: 1.0ms | Allocations: 2405)
+
+
+Started GET "/users/1" for ::1 at 2022-12-07 22:27:55 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1", "user"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUserBook Load (0.2ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:7:in `map'
+  [1m[36mBook Load (0.5ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" IN (?, ?)[0m  [["id", 1], ["id", 2]]
+  ↳ app/models/user.rb:7:in `map'
+Completed 200 OK in 12ms (Views: 0.5ms | ActiveRecord: 0.9ms | Allocations: 2405)
+
+
+Started GET "/users/1" for ::1 at 2022-12-07 22:27:55 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1", "user"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUserBook Load (0.2ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:7:in `map'
+  [1m[36mBook Load (0.5ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" IN (?, ?)[0m  [["id", 1], ["id", 2]]
+  ↳ app/models/user.rb:7:in `map'
+Completed 200 OK in 12ms (Views: 0.3ms | ActiveRecord: 0.8ms | Allocations: 2405)
+
+
+Started GET "/users/1" for ::1 at 2022-12-07 22:27:56 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1", "user"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUserBook Load (0.3ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:7:in `map'
+  [1m[36mBook Load (0.5ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" IN (?, ?)[0m  [["id", 1], ["id", 2]]
+  ↳ app/models/user.rb:7:in `map'
+Completed 200 OK in 12ms (Views: 0.3ms | ActiveRecord: 1.0ms | Allocations: 2405)
+
+
+Started GET "/users/1" for ::1 at 2022-12-07 22:27:56 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1", "user"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUserBook Load (0.2ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:7:in `map'
+  [1m[36mBook Load (0.4ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" IN (?, ?)[0m  [["id", 1], ["id", 2]]
+  ↳ app/models/user.rb:7:in `map'
+Completed 200 OK in 12ms (Views: 0.4ms | ActiveRecord: 0.8ms | Allocations: 2405)
+
+
+Started GET "/users/1" for ::1 at 2022-12-07 22:27:57 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1", "user"=>{}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUserBook Load (0.3ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:7:in `map'
+  [1m[36mBook Load (0.5ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" IN (?, ?)[0m  [["id", 1], ["id", 2]]
+  ↳ app/models/user.rb:7:in `map'
+Completed 200 OK in 13ms (Views: 1.1ms | ActiveRecord: 0.9ms | Allocations: 2405)
+
+
+Started GET "/users/1" for ::1 at 2022-12-07 22:27:57 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1", "user"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUserBook Load (0.3ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:7:in `map'
+  [1m[36mBook Load (0.3ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" IN (?, ?)[0m  [["id", 1], ["id", 2]]
+  ↳ app/models/user.rb:7:in `map'
+Completed 200 OK in 16ms (Views: 0.4ms | ActiveRecord: 0.7ms | Allocations: 2406)
+
+
+Started GET "/users/1" for ::1 at 2022-12-07 22:27:58 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1", "user"=>{}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUserBook Load (0.2ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:7:in `map'
+  [1m[36mBook Load (1.2ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" IN (?, ?)[0m  [["id", 1], ["id", 2]]
+  ↳ app/models/user.rb:7:in `map'
+Completed 200 OK in 10ms (Views: 0.3ms | ActiveRecord: 1.5ms | Allocations: 2405)
+
+
+Started GET "/users/1" for ::1 at 2022-12-07 22:27:58 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1", "user"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUserBook Load (0.2ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:7:in `map'
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" IN (?, ?)[0m  [["id", 1], ["id", 2]]
+  ↳ app/models/user.rb:7:in `map'
+Completed 200 OK in 12ms (Views: 0.7ms | ActiveRecord: 0.6ms | Allocations: 2405)
+
+
+Started GET "/users/1" for ::1 at 2022-12-07 22:28:18 +0700
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1", "user"=>{}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUserBook Load (0.1ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:7:in `map'
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user_book.rb:7:in `as_book_json'
+  [1m[36mBook Load (0.3ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/user_book.rb:7:in `as_book_json'
+Completed 200 OK in 61ms (Views: 1.3ms | ActiveRecord: 3.6ms | Allocations: 13072)
+
+
+Started GET "/users/1" for ::1 at 2022-12-07 22:28:19 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1", "user"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUserBook Load (0.3ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:7:in `map'
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user_book.rb:7:in `as_book_json'
+  [1m[36mBook Load (0.3ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/user_book.rb:7:in `as_book_json'
+Completed 200 OK in 18ms (Views: 0.6ms | ActiveRecord: 0.9ms | Allocations: 2709)
+
+
+Started GET "/users/1" for ::1 at 2022-12-07 22:28:20 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1", "user"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUserBook Load (0.2ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:7:in `map'
+  [1m[36mBook Load (0.6ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user_book.rb:7:in `as_book_json'
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/user_book.rb:7:in `as_book_json'
+Completed 200 OK in 24ms (Views: 1.2ms | ActiveRecord: 1.2ms | Allocations: 2706)
+
+
+Started GET "/users/1" for ::1 at 2022-12-07 22:28:21 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1", "user"=>{}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUserBook Load (0.3ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:7:in `map'
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user_book.rb:7:in `as_book_json'
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/user_book.rb:7:in `as_book_json'
+Completed 200 OK in 19ms (Views: 0.7ms | ActiveRecord: 0.8ms | Allocations: 2706)
+
+
+Started GET "/users/1" for ::1 at 2022-12-07 22:28:21 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1", "user"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUserBook Load (0.2ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:7:in `map'
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user_book.rb:7:in `as_book_json'
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/user_book.rb:7:in `as_book_json'
+Completed 200 OK in 18ms (Views: 1.4ms | ActiveRecord: 0.9ms | Allocations: 2706)
+
+
+Started GET "/users/1" for ::1 at 2022-12-07 22:28:22 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1", "user"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUserBook Load (0.2ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:7:in `map'
+  [1m[36mBook Load (0.4ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user_book.rb:7:in `as_book_json'
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/user_book.rb:7:in `as_book_json'
+Completed 200 OK in 18ms (Views: 0.3ms | ActiveRecord: 0.9ms | Allocations: 2705)
+
+
+Started GET "/users/1" for ::1 at 2022-12-07 22:28:24 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1", "user"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUserBook Load (0.3ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:7:in `map'
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user_book.rb:7:in `as_book_json'
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/user_book.rb:7:in `as_book_json'
+Completed 200 OK in 16ms (Views: 0.4ms | ActiveRecord: 0.8ms | Allocations: 2705)
+
+
+Started GET "/users/1" for ::1 at 2022-12-07 22:28:24 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1", "user"=>{}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUserBook Load (0.2ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:7:in `map'
+  [1m[36mBook Load (0.4ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user_book.rb:7:in `as_book_json'
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/user_book.rb:7:in `as_book_json'
+Completed 200 OK in 24ms (Views: 0.7ms | ActiveRecord: 1.1ms | Allocations: 2705)
+
+
+Started GET "/users/1" for ::1 at 2022-12-07 22:28:25 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1", "user"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUserBook Load (0.2ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:7:in `map'
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user_book.rb:7:in `as_book_json'
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/user_book.rb:7:in `as_book_json'
+Completed 200 OK in 23ms (Views: 2.6ms | ActiveRecord: 0.8ms | Allocations: 2706)
+
+
+Started GET "/users/1" for ::1 at 2022-12-07 22:28:25 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1", "user"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUserBook Load (0.1ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:7:in `map'
+  [1m[36mBook Load (0.3ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user_book.rb:7:in `as_book_json'
+  [1m[36mBook Load (0.4ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/user_book.rb:7:in `as_book_json'
+Completed 200 OK in 21ms (Views: 1.1ms | ActiveRecord: 1.2ms | Allocations: 2705)
+
+
+Started GET "/users/1" for ::1 at 2022-12-07 22:28:26 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1", "user"=>{}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUserBook Load (0.2ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:7:in `map'
+  [1m[36mBook Load (0.3ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user_book.rb:7:in `as_book_json'
+  [1m[36mBook Load (0.3ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/user_book.rb:7:in `as_book_json'
+Completed 200 OK in 21ms (Views: 0.5ms | ActiveRecord: 1.2ms | Allocations: 2705)
+
+
+Started GET "/users/1" for ::1 at 2022-12-07 22:28:26 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1", "user"=>{}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUserBook Load (0.3ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:7:in `map'
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user_book.rb:7:in `as_book_json'
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/user_book.rb:7:in `as_book_json'
+Completed 200 OK in 9ms (Views: 0.6ms | ActiveRecord: 0.6ms | Allocations: 2705)
+
+
+Started GET "/users/1" for ::1 at 2022-12-07 22:28:26 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1", "user"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUserBook Load (0.4ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:7:in `map'
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user_book.rb:7:in `as_book_json'
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/user_book.rb:7:in `as_book_json'
+Completed 200 OK in 18ms (Views: 0.7ms | ActiveRecord: 1.1ms | Allocations: 2705)
+
+
+Started GET "/users/1" for ::1 at 2022-12-07 22:28:26 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1", "user"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUserBook Load (0.2ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:7:in `map'
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user_book.rb:7:in `as_book_json'
+  [1m[36mBook Load (0.3ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/user_book.rb:7:in `as_book_json'
+Completed 200 OK in 18ms (Views: 0.9ms | ActiveRecord: 0.8ms | Allocations: 2705)
+
+
+Started GET "/users/1" for ::1 at 2022-12-07 22:28:27 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1", "user"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUserBook Load (0.1ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:7:in `map'
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user_book.rb:7:in `as_book_json'
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/user_book.rb:7:in `as_book_json'
+Completed 200 OK in 18ms (Views: 3.0ms | ActiveRecord: 0.7ms | Allocations: 2705)
+
+
+Started GET "/users/1" for ::1 at 2022-12-07 22:28:27 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1", "user"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUserBook Load (0.1ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:7:in `map'
+  [1m[36mBook Load (1.0ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user_book.rb:7:in `as_book_json'
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/user_book.rb:7:in `as_book_json'
+Completed 200 OK in 13ms (Views: 0.9ms | ActiveRecord: 1.6ms | Allocations: 2705)
+
+
+Started GET "/users/1" for ::1 at 2022-12-07 22:28:27 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1", "user"=>{}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUserBook Load (0.2ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:7:in `map'
+  [1m[36mBook Load (0.4ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user_book.rb:7:in `as_book_json'
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/user_book.rb:7:in `as_book_json'
+Completed 200 OK in 13ms (Views: 0.9ms | ActiveRecord: 0.9ms | Allocations: 2705)
+
+
+Started GET "/users/1" for ::1 at 2022-12-07 22:28:28 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1", "user"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUserBook Load (0.2ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:7:in `map'
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user_book.rb:7:in `as_book_json'
+  [1m[36mBook Load (0.4ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/user_book.rb:7:in `as_book_json'
+Completed 200 OK in 17ms (Views: 0.3ms | ActiveRecord: 0.9ms | Allocations: 2705)
+
+
+Started GET "/users/1" for ::1 at 2022-12-07 22:28:28 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1", "user"=>{}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUserBook Load (0.2ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:7:in `map'
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user_book.rb:7:in `as_book_json'
+  [1m[36mBook Load (0.3ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/user_book.rb:7:in `as_book_json'
+Completed 200 OK in 33ms (Views: 3.2ms | ActiveRecord: 0.8ms | Allocations: 2707)
+
+
+Started GET "/users/1" for ::1 at 2022-12-07 22:28:28 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1", "user"=>{}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUserBook Load (0.3ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:7:in `map'
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user_book.rb:7:in `as_book_json'
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/user_book.rb:7:in `as_book_json'
+Completed 200 OK in 12ms (Views: 0.7ms | ActiveRecord: 0.8ms | Allocations: 2705)
+
+
+Started GET "/users/1" for ::1 at 2022-12-07 22:28:28 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1", "user"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUserBook Load (0.2ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:7:in `map'
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user_book.rb:7:in `as_book_json'
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/user_book.rb:7:in `as_book_json'
+Completed 200 OK in 17ms (Views: 0.9ms | ActiveRecord: 0.9ms | Allocations: 2705)
+
+
+Started GET "/users/1" for ::1 at 2022-12-07 22:28:29 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1", "user"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUserBook Load (0.2ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:7:in `map'
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user_book.rb:7:in `as_book_json'
+  [1m[36mBook Load (0.3ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/user_book.rb:7:in `as_book_json'
+Completed 200 OK in 15ms (Views: 0.3ms | ActiveRecord: 0.8ms | Allocations: 2705)
+
+
+Started GET "/users/1" for ::1 at 2022-12-07 22:28:29 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1", "user"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUserBook Load (0.1ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:7:in `map'
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user_book.rb:7:in `as_book_json'
+  [1m[36mBook Load (0.5ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/user_book.rb:7:in `as_book_json'
+Completed 200 OK in 14ms (Views: 0.3ms | ActiveRecord: 0.8ms | Allocations: 2705)
+
+
+Started GET "/users/1" for ::1 at 2022-12-07 22:28:29 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1", "user"=>{}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUserBook Load (0.3ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:7:in `map'
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user_book.rb:7:in `as_book_json'
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/user_book.rb:7:in `as_book_json'
+Completed 200 OK in 17ms (Views: 0.8ms | ActiveRecord: 0.7ms | Allocations: 2705)
+
+
+Started GET "/users/1" for ::1 at 2022-12-07 22:28:29 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1", "user"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUserBook Load (0.9ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:7:in `map'
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user_book.rb:7:in `as_book_json'
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/user_book.rb:7:in `as_book_json'
+Completed 200 OK in 19ms (Views: 0.6ms | ActiveRecord: 1.4ms | Allocations: 2705)
+
+
+Started GET "/users/1" for ::1 at 2022-12-07 22:28:36 +0700
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1", "user"=>{}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUserBook Load (0.2ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:7:in `map'
+  [1m[36mBook Load (0.5ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" IN (?, ?)[0m  [["id", 1], ["id", 2]]
+  ↳ app/models/user.rb:7:in `map'
+Completed 200 OK in 73ms (Views: 0.5ms | ActiveRecord: 8.8ms | Allocations: 12431)
+
+
+Started GET "/users/1" for ::1 at 2022-12-07 22:28:36 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1", "user"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUserBook Load (0.4ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:7:in `map'
+  [1m[36mBook Load (0.9ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" IN (?, ?)[0m  [["id", 1], ["id", 2]]
+  ↳ app/models/user.rb:7:in `map'
+Completed 200 OK in 15ms (Views: 1.5ms | ActiveRecord: 1.5ms | Allocations: 2409)
+
+
+Started GET "/users/1" for ::1 at 2022-12-07 22:28:37 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1", "user"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUserBook Load (0.3ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:7:in `map'
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" IN (?, ?)[0m  [["id", 1], ["id", 2]]
+  ↳ app/models/user.rb:7:in `map'
+Completed 200 OK in 19ms (Views: 2.4ms | ActiveRecord: 0.6ms | Allocations: 2405)
+
+
+Started GET "/users/1" for ::1 at 2022-12-07 22:28:37 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1", "user"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUserBook Load (0.1ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:7:in `map'
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" IN (?, ?)[0m  [["id", 1], ["id", 2]]
+  ↳ app/models/user.rb:7:in `map'
+Completed 200 OK in 9ms (Views: 1.1ms | ActiveRecord: 0.6ms | Allocations: 2405)
+
+
+Started GET "/users/1" for ::1 at 2022-12-07 22:28:38 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1", "user"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUserBook Load (0.2ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:7:in `map'
+  [1m[36mBook Load (1.3ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" IN (?, ?)[0m  [["id", 1], ["id", 2]]
+  ↳ app/models/user.rb:7:in `map'
+Completed 200 OK in 16ms (Views: 0.8ms | ActiveRecord: 1.7ms | Allocations: 2405)
+
+
+Started GET "/users/1" for ::1 at 2022-12-07 22:28:38 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1", "user"=>{}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUserBook Load (0.1ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:7:in `map'
+  [1m[36mBook Load (0.4ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" IN (?, ?)[0m  [["id", 1], ["id", 2]]
+  ↳ app/models/user.rb:7:in `map'
+Completed 200 OK in 15ms (Views: 1.4ms | ActiveRecord: 0.7ms | Allocations: 2405)
+
+
+Started GET "/users/1" for ::1 at 2022-12-07 22:28:38 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1", "user"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUserBook Load (0.2ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:7:in `map'
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" IN (?, ?)[0m  [["id", 1], ["id", 2]]
+  ↳ app/models/user.rb:7:in `map'
+Completed 200 OK in 10ms (Views: 0.2ms | ActiveRecord: 0.6ms | Allocations: 2405)
+
+
+Started GET "/users/1" for ::1 at 2022-12-07 22:28:38 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1", "user"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUserBook Load (0.1ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:7:in `map'
+  [1m[36mBook Load (0.4ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" IN (?, ?)[0m  [["id", 1], ["id", 2]]
+  ↳ app/models/user.rb:7:in `map'
+Completed 200 OK in 9ms (Views: 0.3ms | ActiveRecord: 0.7ms | Allocations: 2405)
+
+
+Started GET "/users/1" for ::1 at 2022-12-07 22:28:39 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1", "user"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUserBook Load (0.3ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:7:in `map'
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" IN (?, ?)[0m  [["id", 1], ["id", 2]]
+  ↳ app/models/user.rb:7:in `map'
+Completed 200 OK in 10ms (Views: 0.4ms | ActiveRecord: 0.7ms | Allocations: 2405)
+
+
+Started GET "/users/1" for ::1 at 2022-12-07 22:28:40 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1", "user"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUserBook Load (0.5ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:7:in `map'
+  [1m[36mBook Load (0.5ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" IN (?, ?)[0m  [["id", 1], ["id", 2]]
+  ↳ app/models/user.rb:7:in `map'
+Completed 200 OK in 17ms (Views: 0.5ms | ActiveRecord: 1.2ms | Allocations: 2405)
+
+
+Started GET "/users/1" for ::1 at 2022-12-07 22:29:18 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1", "user"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUserBook Load (0.2ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:7:in `map'
+  [1m[36mBook Load (0.3ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" IN (?, ?)[0m  [["id", 1], ["id", 2]]
+  ↳ app/models/user.rb:7:in `map'
+Completed 200 OK in 22ms (Views: 3.7ms | ActiveRecord: 0.8ms | Allocations: 2405)
+
+
+Started POST "/users" for ::1 at 2022-12-07 22:34:58 +0700
+Processing by UsersController#create as HTML
+  Parameters: {"user_book"=>{"user_id"=>1, "book_id"=>2}, "user"=>{}}
+Completed 400 Bad Request in 3ms (Allocations: 188)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: user
+Did you mean?  user
+               user_book
+               controller
+               action):
+  
+app/controllers/users_controller.rb:49:in `user_params'
+app/controllers/users_controller.rb:18:in `create'
+Started POST "/user_books" for ::1 at 2022-12-07 22:38:11 +0700
+Processing by UserBooksController#create as HTML
+  Parameters: {"user_book"=>{"user_id"=>1, "book_id"=>2}}
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/user_books_controller.rb:8:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/user_books_controller.rb:8:in `create'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/user_books_controller.rb:8:in `create'
+  [1m[36mBook Load (0.3ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/user_books_controller.rb:8:in `create'
+  [1m[36mUserBook Create (1.5ms)[0m  [1m[32mINSERT INTO "user_books" ("user_id", "book_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 1], ["book_id", 2], ["created_at", "2022-12-07 15:38:11.369019"], ["updated_at", "2022-12-07 15:38:11.369019"]]
+  ↳ app/controllers/user_books_controller.rb:8:in `create'
+  [1m[36mTRANSACTION (7.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/user_books_controller.rb:8:in `create'
+Completed 201 Created in 62ms (Views: 2.4ms | ActiveRecord: 10.7ms | Allocations: 7114)
+
+
+Started POST "/user_books" for ::1 at 2022-12-07 22:38:43 +0700
+Processing by UserBooksController#create as HTML
+  Parameters: {"user_book"=>{"user_id"=>1, "book_id"=>2}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/user_books_controller.rb:8:in `create'
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/user_books_controller.rb:8:in `create'
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/user_books_controller.rb:8:in `create'
+  [1m[36mUserBook Create (1.6ms)[0m  [1m[32mINSERT INTO "user_books" ("user_id", "book_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 1], ["book_id", 2], ["created_at", "2022-12-07 15:38:43.317876"], ["updated_at", "2022-12-07 15:38:43.317876"]]
+  ↳ app/controllers/user_books_controller.rb:8:in `create'
+  [1m[36mTRANSACTION (14.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/user_books_controller.rb:8:in `create'
+Completed 201 Created in 52ms (Views: 2.0ms | ActiveRecord: 17.6ms | Allocations: 5389)
+
+
+Started POST "/user_books" for ::1 at 2022-12-07 22:38:47 +0700
+Processing by UserBooksController#create as HTML
+  Parameters: {"user_book"=>{"user_id"=>1, "book_id"=>2}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/user_books_controller.rb:8:in `create'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/user_books_controller.rb:8:in `create'
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/user_books_controller.rb:8:in `create'
+  [1m[36mUserBook Create (1.9ms)[0m  [1m[32mINSERT INTO "user_books" ("user_id", "book_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 1], ["book_id", 2], ["created_at", "2022-12-07 15:38:47.553912"], ["updated_at", "2022-12-07 15:38:47.553912"]]
+  ↳ app/controllers/user_books_controller.rb:8:in `create'
+  [1m[36mTRANSACTION (9.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/user_books_controller.rb:8:in `create'
+Completed 201 Created in 30ms (Views: 1.0ms | ActiveRecord: 12.2ms | Allocations: 5388)
+
+
+Started POST "/user_books" for ::1 at 2022-12-07 22:38:48 +0700
+Processing by UserBooksController#create as HTML
+  Parameters: {"user_book"=>{"user_id"=>1, "book_id"=>2}}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/user_books_controller.rb:8:in `create'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/user_books_controller.rb:8:in `create'
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/user_books_controller.rb:8:in `create'
+  [1m[36mUserBook Create (1.0ms)[0m  [1m[32mINSERT INTO "user_books" ("user_id", "book_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 1], ["book_id", 2], ["created_at", "2022-12-07 15:38:48.251366"], ["updated_at", "2022-12-07 15:38:48.251366"]]
+  ↳ app/controllers/user_books_controller.rb:8:in `create'
+  [1m[36mTRANSACTION (13.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/user_books_controller.rb:8:in `create'
+Completed 201 Created in 35ms (Views: 1.8ms | ActiveRecord: 15.4ms | Allocations: 4792)
+
+
+Started POST "/user_books" for ::1 at 2022-12-07 22:38:50 +0700
+Processing by UserBooksController#create as HTML
+  Parameters: {"user_book"=>{"user_id"=>1, "book_id"=>2}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/user_books_controller.rb:8:in `create'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/user_books_controller.rb:8:in `create'
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/user_books_controller.rb:8:in `create'
+  [1m[36mUserBook Create (1.7ms)[0m  [1m[32mINSERT INTO "user_books" ("user_id", "book_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 1], ["book_id", 2], ["created_at", "2022-12-07 15:38:50.322863"], ["updated_at", "2022-12-07 15:38:50.322863"]]
+  ↳ app/controllers/user_books_controller.rb:8:in `create'
+  [1m[36mTRANSACTION (7.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/user_books_controller.rb:8:in `create'
+Completed 201 Created in 35ms (Views: 0.5ms | ActiveRecord: 9.2ms | Allocations: 5388)
+
+
+Started GET "/users/1" for ::1 at 2022-12-07 22:39:07 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1", "user"=>{}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUserBook Load (0.7ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:7:in `map'
+  [1m[36mBook Load (0.3ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" IN (?, ?)[0m  [["id", 1], ["id", 2]]
+  ↳ app/models/user.rb:7:in `map'
+Completed 200 OK in 17ms (Views: 0.6ms | ActiveRecord: 1.2ms | Allocations: 3366)
+
+
+Started GET "/users/1" for ::1 at 2022-12-07 22:45:59 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1", "user"=>{}}
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUserBook Load (0.4ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:7:in `map'
+  [1m[36mBook Load (0.5ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" IN (?, ?)[0m  [["id", 1], ["id", 2]]
+  ↳ app/models/user.rb:7:in `map'
+Completed 200 OK in 64ms (Views: 1.2ms | ActiveRecord: 2.5ms | Allocations: 3841)
+
+
+Started DELETE "/user_books" for ::1 at 2022-12-07 22:47:04 +0700
+  
+ActionController::RoutingError (No route matches [DELETE] "/user_books"):
+  
+Started GET "/users/1" for ::1 at 2022-12-07 22:48:02 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1", "user"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUserBook Load (0.3ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:7:in `map'
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" IN (?, ?)[0m  [["id", 1], ["id", 2]]
+  ↳ app/models/user.rb:7:in `map'
+Completed 200 OK in 12ms (Views: 2.9ms | ActiveRecord: 0.8ms | Allocations: 3340)
+
+
+Started DELETE "/user_books" for ::1 at 2022-12-07 22:48:30 +0700
+  
+ActionController::RoutingError (No route matches [DELETE] "/user_books"):
+  
+Started DELETE "/user_books/8" for ::1 at 2022-12-07 22:48:37 +0700
+Processing by UserBooksController#destroy as HTML
+  Parameters: {"user_book"=>{"id"=>8}, "id"=>"8"}
+  [1m[36mUserBook Load (0.2ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/user_books_controller.rb:23:in `set_user_book'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/user_books_controller.rb:17:in `destroy'
+  [1m[36mUserBook Destroy (0.4ms)[0m  [1m[31mDELETE FROM "user_books" WHERE "user_books"."id" = ?[0m  [["id", 8]]
+  ↳ app/controllers/user_books_controller.rb:17:in `destroy'
+  [1m[36mTRANSACTION (13.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/user_books_controller.rb:17:in `destroy'
+Completed 204 No Content in 26ms (ActiveRecord: 13.9ms | Allocations: 3929)
+
+
+Started GET "/users/1" for ::1 at 2022-12-07 22:48:54 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1", "user"=>{}}
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `set_user'
+  [1m[36mUserBook Load (0.2ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:7:in `map'
+  [1m[36mBook Load (0.7ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" IN (?, ?)[0m  [["id", 1], ["id", 2]]
+  ↳ app/models/user.rb:7:in `map'
+Completed 200 OK in 26ms (Views: 0.8ms | ActiveRecord: 2.6ms | Allocations: 3154)
+
+
